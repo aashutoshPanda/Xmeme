@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import ImageCard from "./ImageCard";
 import Navbar from "./Navbar";
 import Heading from "./Heading";
+import Pagination from "./Pagination";
 import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,7 @@ export default function Home() {
             ))}
           </Grid>
         </Container>
+        <Pagination />
       </main>
       <Footer />
     </React.Fragment>
