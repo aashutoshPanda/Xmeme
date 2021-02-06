@@ -7,6 +7,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import ViewModal from "./ViewModal";
+import EditModal from "./EditModal";
+import ConfirmDelete from "./ConfirmDelete";
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -44,15 +47,12 @@ export default function ImageCard() {
         <Typography>Author</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
+        {/* <Button size="small" color="primary">
           View
-        </Button>
-        <Button size="small" color="primary">
-          Edit
-        </Button>
-        <Button size="small" color="secondary">
-          Delete
-        </Button>
+        </Button> */}
+        <ViewModal />
+        <EditModal />
+        <ConfirmDelete />
       </CardActions>
     </Card>
   );

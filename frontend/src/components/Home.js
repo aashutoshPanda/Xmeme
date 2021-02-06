@@ -9,7 +9,12 @@ import Navbar from "./Navbar";
 import Heading from "./Heading";
 import Footer from "./Footer";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+}));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
