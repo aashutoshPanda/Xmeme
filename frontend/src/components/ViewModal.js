@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AnimatedModal() {
+export default function ViewModal({ url }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -49,7 +49,7 @@ export default function AnimatedModal() {
         }}
       >
         <Fade in={open}>
-          <img src="https://source.unsplash.com/random" alt="useless" />
+          <img src={url} alt="meme should be shown here" />
         </Fade>
       </Modal>
     </div>
