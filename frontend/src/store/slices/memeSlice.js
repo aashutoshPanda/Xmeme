@@ -25,6 +25,11 @@ export const memeSlice = createSlice({
         meme.caption = action.payload.caption;
       }
     },
+    deleteMeme: (state, action) => {
+      state.memeList = state.memeList.filter(
+        (meme) => meme.id !== action.payload
+      );
+    },
   },
 });
 
@@ -33,6 +38,7 @@ export const {
   addMeme,
   setMemeToUpdate,
   updateMeme,
+  deleteMeme,
 } = memeSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -58,7 +64,11 @@ export const UpdateMemeAsync = (data) => (dispatch) => {
     dispatch(updateMeme(res.data));
   });
 };
-
+export const DeleteMemeAsync = (id) => (dispatch) => {
+  API.delete(`/memes/${id}/`).then((res) => {
+    dispatch(deleteMeme(id));
+  });
+};
 // // The function below is called a selector and allows us to select a value from
 // // the state. Selectors can also be defined inline where they're used instead of
 // // in the slice file. For example: `useSelector((state) => state.counter.value)`

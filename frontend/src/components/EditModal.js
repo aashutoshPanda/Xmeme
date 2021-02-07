@@ -32,7 +32,6 @@ export default function EditModal({ data }) {
     setOpen(false);
   };
   const handleClose = () => {
-    console.log("before close = ", memeToUpdate);
     setOpen(false);
   };
   return (

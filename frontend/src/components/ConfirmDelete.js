@@ -6,17 +6,24 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import { useDispatch } from "react-redux";
+
+import { DeleteMemeAsync } from "../store/slices/memeSlice";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function ConfirmDelete() {
+export default function ConfirmDelete({ data }) {
   const [open, setOpen] = React.useState(false);
-
+  const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  const handleDelete = () => {
+    console.log("gonna delete", data.id);
+    dispatch(DeleteMemeAsync(data.id));
+    setOpen(false);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -43,7 +50,7 @@ export default function ConfirmDelete() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleDelete} color="primary" autoFocus>
             Delete
           </Button>
         </DialogActions>
