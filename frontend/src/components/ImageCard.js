@@ -51,7 +51,7 @@ export default function ImageCard({ data }) {
         {/* <Button size="small" color="primary">
           View
         </Button> */}
-        <ViewModal url />
+        <ViewModal url={url} />
         <EditModal data={data} />
         <ConfirmDelete data={data} />
       </CardActions>
