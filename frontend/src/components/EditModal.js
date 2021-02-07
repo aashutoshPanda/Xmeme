@@ -59,7 +59,9 @@ export default function EditModal({ data }) {
             fullWidth
             value={memeToUpdate.name}
             onChange={(e) =>
-              dispatch(setMemeToUpdate({ ...data, name: e.target.value }))
+              dispatch(
+                setMemeToUpdate({ ...memeToUpdate, name: e.target.value })
+              )
             }
           />
           <TextField
@@ -70,7 +72,9 @@ export default function EditModal({ data }) {
             fullWidth
             value={memeToUpdate.caption}
             onChange={(e) =>
-              dispatch(setMemeToUpdate({ ...data, caption: e.target.value }))
+              dispatch(
+                setMemeToUpdate({ ...memeToUpdate, caption: e.target.value })
+              )
             }
           />
           <TextField
@@ -81,7 +85,9 @@ export default function EditModal({ data }) {
             fullWidth
             value={memeToUpdate.url}
             onChange={(e) =>
-              dispatch(setMemeToUpdate({ ...data, url: e.target.value }))
+              dispatch(
+                setMemeToUpdate({ ...memeToUpdate, url: e.target.value })
+              )
             }
           />
         </DialogContent>

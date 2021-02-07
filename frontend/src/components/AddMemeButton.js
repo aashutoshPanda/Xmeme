@@ -11,7 +11,12 @@ import Slide from "@material-ui/core/Slide";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMemeToAdd,
+  selectMemeToAdd,
+  PostMemeAsync,
+} from "../store/slices/memeSlice";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -37,6 +42,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function EditModal() {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+  const memeToAdd = useSelector(selectMemeToAdd);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,7 +52,10 @@ export default function EditModal() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const handlePost = () => {
+    dispatch(PostMemeAsync(memeToAdd));
+    setOpen(false);
+  };
   return (
     <div>
       <div className={classes.fab}>
@@ -70,6 +80,10 @@ export default function EditModal() {
             id="name"
             label="Name"
             fullWidth
+            value={memeToAdd.name}
+            onChange={(e) =>
+              dispatch(setMemeToAdd({ ...memeToAdd, name: e.target.value }))
+            }
           />
           <TextField
             autoFocus
@@ -77,14 +91,28 @@ export default function EditModal() {
             id="caption"
             label="caption"
             fullWidth
+            value={memeToAdd.caption}
+            onChange={(e) =>
+              dispatch(setMemeToAdd({ ...memeToAdd, caption: e.target.value }))
+            }
           />
-          <TextField autoFocus margin="dense" id="url" label="URL" fullWidth />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="url"
+            label="url"
+            fullWidth
+            value={memeToAdd.url}
+            onChange={(e) =>
+              dispatch(setMemeToAdd({ ...memeToAdd, url: e.target.value }))
+            }
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handlePost} color="primary">
             post
           </Button>
         </DialogActions>
