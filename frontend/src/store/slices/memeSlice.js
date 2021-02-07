@@ -12,10 +12,12 @@ export const memeSlice = createSlice({
       id: "",
     },
     memeToAdd: { name: "", caption: "", url: "" },
+    memeListCurrentPage: [],
   },
   reducers: {
     loadMemes: (state, action) => {
       state.memeList = action.payload;
+      state.memeListCurrentPage = action.payload;
     },
     addMeme: (state, action) => {
       state.memeList.push(action.payload);
@@ -44,6 +46,12 @@ export const memeSlice = createSlice({
         (meme) => meme.id !== action.payload
       );
     },
+    searchMeme: (state, action) => {
+      state.memeList = state.memeListCurrentPage.filter((item) => {
+        if (action.payload === "") return item;
+        if (item.caption.toLowerCase().includes(action.payload)) return item;
+      });
+    },
   },
 });
 
@@ -54,6 +62,7 @@ export const {
   updateMeme,
   deleteMeme,
   setMemeToAdd,
+  searchMeme,
 } = memeSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It

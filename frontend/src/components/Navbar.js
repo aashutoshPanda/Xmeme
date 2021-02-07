@@ -7,6 +7,10 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import GitHubIcon from "@material-ui/icons/GitHub";
+
+import { useDispatch } from "react-redux";
+import { searchMeme } from "../store/slices/memeSlice";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1, 1, 1, 1),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
@@ -64,7 +68,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
+  const handleOnChange = (e) => {
+    dispatch(searchMeme(e.target.value));
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -85,11 +93,12 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search Memes…"
+              placeholder="Search Memes on this pageeeeeeeeeeeeeeeeeeeeeeee…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              onChange={handleOnChange}
               inputProps={{ "aria-label": "search" }}
             />
           </div>
