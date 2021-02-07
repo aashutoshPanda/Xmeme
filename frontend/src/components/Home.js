@@ -3,17 +3,21 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
 import ImageCard from "./ImageCard";
 import Navbar from "./Navbar";
 import Heading from "./Heading";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
-
+import AddMemeButton from "./AddMemeButton";
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+  },
+  fab: {
+    position: "fixed",
+    right: "50px",
+    bottom: "50px",
   },
 }));
 
@@ -26,6 +30,7 @@ export default function Home() {
     <React.Fragment>
       <CssBaseline />
       <Navbar />
+      <AddMemeButton />
       <main>
         <Heading />
         <Container className={classes.cardGrid} maxWidth="md">

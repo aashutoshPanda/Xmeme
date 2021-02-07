@@ -8,11 +8,35 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  fab: {
+    position: "fixed",
+    right: "50px",
+    bottom: "50px",
+  },
+}));
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
 export default function EditModal() {
   const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,20 +48,21 @@ export default function EditModal() {
 
   return (
     <div>
-      <Button size="small" color="primary" onClick={handleClickOpen}>
-        Edit
-      </Button>
+      <div className={classes.fab}>
+        <Fab color="primary" aria-label="add" onClick={handleClickOpen}>
+          <AddIcon />
+        </Fab>
+      </div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Edit Meme</DialogTitle>
+        <DialogTitle id="form-dialog-title">Post New Meme</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Update the fields you want to change, the Rest will remain
-            unchanged.
+            Add the following fields for posting a new meme.
           </DialogContentText>
           <TextField
             autoFocus
@@ -60,7 +85,7 @@ export default function EditModal() {
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">
-            Edit
+            post
           </Button>
         </DialogActions>
       </Dialog>
