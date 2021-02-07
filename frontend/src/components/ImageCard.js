@@ -31,20 +31,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ImageCard() {
+export default function ImageCard({ data }) {
   const classes = useStyles();
+  const { caption, url, name, id } = data;
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
-        image="https://source.unsplash.com/random"
+        image={url}
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
         <Typography gutterBottom variant="h6" component="h2">
-          Caption
+          {caption}
         </Typography>
-        <Typography>Author</Typography>
+        <Typography>{name}</Typography>
       </CardContent>
       <CardActions>
         {/* <Button size="small" color="primary">

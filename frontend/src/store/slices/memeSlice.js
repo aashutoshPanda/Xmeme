@@ -64,6 +64,7 @@ export const UpdateMemeAsync = (data) => (dispatch) => {
 // // in the slice file. For example: `useSelector((state) => state.counter.value)`
 
 export const selectMemeToUpdate = (state) => state.meme.memeToUpdate;
+export const selectMemeList = (state) => state.meme.memeList;
 // export const selectShouldNavigate = (state) => state.meme.shouldNavigate;
 
 export default memeSlice.reducer;
