@@ -54,7 +54,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'mysite.utils.CustomPagination',
+    'PAGE_SIZE': 100
+}
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
