@@ -5,6 +5,7 @@ from .models import Meme
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
+from rest_framework.exceptions import MethodNotAllowed
 
 
 class MemeViewSet(ModelViewSet):
@@ -36,3 +37,7 @@ class MemeViewSet(ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         # to return latest 100
         return Response(serializer.data[:100])
+
+    def perform_update(self, serializer):
+        raise MethodNotAllowed(
+            method='PUT', detail='Method "GET" not allowed without lookup')

@@ -65,6 +65,7 @@ export default function EditModal({ data }) {
             id="name"
             label="Name"
             fullWidth
+            disabled={true}
             value={memeToUpdate.name}
             onChange={(e) =>
               dispatch(
