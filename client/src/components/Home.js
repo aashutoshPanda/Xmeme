@@ -9,7 +9,7 @@ import Heading from "./Heading";
 import Footer from "./Footer";
 import AddMemeButton from "./AddMemeButton";
 import Alert from "./Alert";
-import { getMemesAsync, setMemeToUpdate } from "../store/slices/memeSlice";
+import { getMemesAsync } from "../store/slices/memeSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
