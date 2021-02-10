@@ -9,10 +9,7 @@ import Heading from "./Heading";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
 import AddMemeButton from "./AddMemeButton";
-import {
-  setByPageNumberAsync,
-  selectCurrentPage,
-} from "../store/slices/paginationSlice";
+import { getMemesAsync, setMemeToUpdate } from "../store/slices/memeSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -34,10 +31,10 @@ export default function Home() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const memeList = useSelector(selectMemeList);
-  const currentPage = useSelector(selectCurrentPage);
+  // const currentPage = useSelector(selectCurrentPage);
 
   useEffect(() => {
-    dispatch(setByPageNumberAsync(currentPage));
+    dispatch(getMemesAsync());
   }, []);
 
   // console.log("the meme list", memeList);
