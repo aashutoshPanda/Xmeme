@@ -8,6 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { useDispatch, useSelector } from "react-redux";
+import EditIcon from "@material-ui/icons/Edit";
 import {
   setMemeToUpdate,
   selectMemeToUpdate,
@@ -36,7 +37,13 @@ export default function EditModal({ data }) {
   };
   return (
     <div>
-      <Button size="small" color="primary" onClick={handleClickOpen}>
+      <Button
+        size="small"
+        color="primary"
+        variant="outlined"
+        onClick={handleClickOpen}
+        startIcon={<EditIcon />}
+      >
         Edit
       </Button>
       <Dialog

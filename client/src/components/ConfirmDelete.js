@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { useDispatch } from "react-redux";
-
+import DeleteIcon from "@material-ui/icons/Delete";
 import { DeleteMemeAsync } from "../store/slices/memeSlice";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -30,7 +30,13 @@ export default function ConfirmDelete({ data }) {
 
   return (
     <div>
-      <Button size="small" color="secondary" onClick={handleClickOpen}>
+      <Button
+        size="small"
+        color="secondary"
+        variant="outlined"
+        onClick={handleClickOpen}
+        startIcon={<DeleteIcon />}
+      >
         Delete
       </Button>
       <Dialog

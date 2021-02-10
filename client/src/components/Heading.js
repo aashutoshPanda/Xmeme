@@ -11,7 +11,7 @@ import Link from "@material-ui/core/Link";
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(2, 0, 1),
   },
 }));
 
