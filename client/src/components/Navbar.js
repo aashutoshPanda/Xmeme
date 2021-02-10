@@ -7,10 +7,10 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import GitHubIcon from "@material-ui/icons/GitHub";
-
-import { useDispatch } from "react-redux";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { useDispatch, useSelector } from "react-redux";
 import { searchMeme } from "../store/slices/memeSlice";
-
+import { selectIsLoading } from "../store/slices/loadingSlice";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -64,12 +64,15 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  progressBar: {
+    width: "100%",
+  },
 }));
 
 export default function SearchAppBar() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const loading = useSelector(selectIsLoading);
   const handleOnChange = (e) => {
     dispatch(searchMeme(e.target.value));
   };
@@ -104,6 +107,9 @@ export default function SearchAppBar() {
             />
           </div>
         </Toolbar>
+        {loading ? (
+          <LinearProgress color="primary" className={classes.progressBar} />
+        ) : null}
       </AppBar>
     </div>
   );

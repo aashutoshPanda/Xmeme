@@ -10,7 +10,7 @@ import Footer from "./Footer";
 import AddMemeButton from "./AddMemeButton";
 import Alert from "./Alert";
 import { getMemesAsync } from "../store/slices/memeSlice";
-import CardMedia from "@material-ui/core/CardMedia";
+import { setLoading } from "../store/slices/loadingSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectMemeList } from "../store/slices/memeSlice";
@@ -38,6 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getMemesAsync());
+    dispatch(setLoading(true));
   }, []);
 
   // console.log("the meme list", memeList);

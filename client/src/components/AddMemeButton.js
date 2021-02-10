@@ -7,7 +7,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -17,6 +16,7 @@ import {
   selectMemeToAdd,
   PostMemeAsync,
 } from "../store/slices/memeSlice";
+import { setLoading } from "../store/slices/loadingSlice";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -54,6 +54,7 @@ export default function EditModal() {
   };
   const handlePost = () => {
     dispatch(PostMemeAsync(memeToAdd));
+    dispatch(setLoading(true));
     setOpen(false);
   };
   return (

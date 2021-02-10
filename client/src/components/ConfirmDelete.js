@@ -9,7 +9,7 @@ import Slide from "@material-ui/core/Slide";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { DeleteMemeAsync } from "../store/slices/memeSlice";
-
+import { setLoading } from "../store/slices/loadingSlice";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -22,6 +22,7 @@ export default function ConfirmDelete({ data }) {
   const handleDelete = () => {
     console.log("gonna delete", data.id);
     dispatch(DeleteMemeAsync(data.id));
+    dispatch(setLoading(true));
     setOpen(false);
   };
   const handleClose = () => {

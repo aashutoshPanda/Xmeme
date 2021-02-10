@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setIsOpen, setType, setMessage, reset } from "./alertSlice";
+import { setIsOpen, setType, setMessage } from "./alertSlice";
+import { setLoading } from "./loadingSlice";
 import API from "../../api";
 
 export const memeSlice = createSlice({
@@ -92,6 +93,7 @@ export const getMemesAsync = () => (dispatch) => {
   API.get(`/memes/`).then((res) => {
     console.log("meme data", res.data);
     dispatch(loadMemes(res.data));
+    dispatch(setLoading(false));
   });
 };
 export const PostMemeAsync = (data) => (dispatch) => {
@@ -103,10 +105,12 @@ export const PostMemeAsync = (data) => (dispatch) => {
       dispatch(setMessage(message));
       dispatch(setIsOpen(true));
       dispatch(setType("success"));
+      dispatch(setLoading(false));
     })
     .catch((err) => {
       if (err.response) {
         dispatch(hadleErrors(err));
+        dispatch(setLoading(false));
       }
     });
 };
@@ -119,10 +123,12 @@ export const UpdateMemeAsync = (data) => (dispatch) => {
       dispatch(setMessage(message));
       dispatch(setType("success"));
       dispatch(setIsOpen(true));
+      dispatch(setLoading(false));
     })
     .catch((err) => {
       if (err.response) {
         dispatch(hadleErrors(err));
+        dispatch(setLoading(false));
       }
     });
 };
@@ -130,10 +136,12 @@ export const DeleteMemeAsync = (id) => (dispatch) => {
   API.delete(`/memes/${id}/`)
     .then((res) => {
       dispatch(deleteMeme(id));
+      dispatch(setLoading(false));
     })
     .catch((err) => {
       if (err.response) {
         dispatch(hadleErrors(err));
+        dispatch(setLoading(false));
       }
     });
 };
