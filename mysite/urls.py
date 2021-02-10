@@ -20,23 +20,24 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Meme API",
-      default_version='v1',
-      description="An API for managing memes",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@memes.remote"),
-      license=openapi.License(name="TEST License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Meme API",
+        default_version='v1',
+        description="An API for managing memes",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@memes.remote"),
+        license=openapi.License(name="TEST License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 
-
 urlpatterns = [
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger-ui/', schema_view.with_ui('swagger',
+                                            cache_timeout=0), name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
     path('', include('meme.urls')),
-    path('redoc', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('redoc', schema_view.with_ui(
+        'redoc', cache_timeout=0), name='schema-redoc'),
 ]
