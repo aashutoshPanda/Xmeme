@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      width: "50%",
+      width: "33%",
     },
   },
   searchIcon: {
@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "100%",
+      width: "40ch",
       "&:focus": {
-        width: "100%",
+        width: "60ch",
       },
     },
   },
@@ -82,6 +82,7 @@ export default function SearchAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            href="https://github.com/aashutoshPanda"
           >
             <GitHubIcon />
           </IconButton>
@@ -93,7 +94,7 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search Memes on this pageeeeeeeeeeeeeeeeeeeeeeee…"
+              placeholder="Search Memes…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
