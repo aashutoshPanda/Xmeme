@@ -7,6 +7,7 @@ export const memeSlice = createSlice({
   name: "meme",
   initialState: {
     memeList: [],
+    searchTerm: "",
     memeToUpdate: {
       name: "",
       caption: "",
@@ -46,11 +47,8 @@ export const memeSlice = createSlice({
         (meme) => meme.id !== action.payload
       );
     },
-    searchMeme: (state, action) => {
-      state.memeList = state.memeListCurrentPage.filter((item) => {
-        if (action.payload === "") return item;
-        if (item.caption.toLowerCase().includes(action.payload)) return item;
-      });
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
     },
   },
 });
@@ -62,7 +60,7 @@ export const {
   updateMeme,
   deleteMeme,
   setMemeToAdd,
-  searchMeme,
+  setSearchTerm,
 } = memeSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -150,6 +148,7 @@ export const DeleteMemeAsync = (id) => (dispatch) => {
 export const selectMemeToUpdate = (state) => state.meme.memeToUpdate;
 export const selectMemeToAdd = (state) => state.meme.memeToAdd;
 export const selectMemeList = (state) => state.meme.memeList;
+export const selectSearchTerm = (state) => state.meme.searchTerm;
 // export const selectShouldNavigate = (state) => state.meme.shouldNavigate;
 
 export default memeSlice.reducer;

@@ -9,7 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { useDispatch, useSelector } from "react-redux";
-import { searchMeme } from "../store/slices/memeSlice";
+import { setSearchTerm } from "../store/slices/memeSlice";
 import { selectIsLoading } from "../store/slices/loadingSlice";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,7 +74,7 @@ export default function SearchAppBar() {
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
   const handleOnChange = (e) => {
-    dispatch(searchMeme(e.target.value));
+    dispatch(setSearchTerm(e.target.value));
   };
   return (
     <div className={classes.root}>

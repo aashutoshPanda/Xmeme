@@ -9,7 +9,7 @@ import Heading from "./Heading";
 import Footer from "./Footer";
 import AddMemeButton from "./AddMemeButton";
 import Alert from "./Alert";
-import { getMemesAsync } from "../store/slices/memeSlice";
+import { getMemesAsync, selectSearchTerm } from "../store/slices/memeSlice";
 import { setLoading } from "../store/slices/loadingSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -34,8 +34,10 @@ export default function Home() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const memeList = useSelector(selectMemeList);
-  // const currentPage = useSelector(selectCurrentPage);
-
+  const searchTerm = useSelector(selectSearchTerm);
+  const filteredList = memeList.filter((item) => {
+    return searchTerm === "" || item.caption.toLowerCase().includes(searchTerm);
+  });
   useEffect(() => {
     dispatch(getMemesAsync());
     dispatch(setLoading(true));
@@ -51,8 +53,8 @@ export default function Home() {
         <Heading />
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {memeList.length !== 0 ? (
-              memeList.map((item) => (
+            {filteredList.length !== 0 ? (
+              filteredList.map((item) => (
                 <Grid item key={item.id} xs={12} sm={6} md={4}>
                   <ImageCard data={item} />
                 </Grid>
