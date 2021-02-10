@@ -81,6 +81,7 @@ export default function EditModal() {
             id="name"
             label="Name"
             fullWidth
+            placeholder="Ex. Elon Musk"
             value={memeToAdd.name}
             onChange={(e) =>
               dispatch(setMemeToAdd({ ...memeToAdd, name: e.target.value }))
@@ -92,6 +93,7 @@ export default function EditModal() {
             id="caption"
             label="caption"
             fullWidth
+            placeholder="Ex. Funniest Meme"
             value={memeToAdd.caption}
             onChange={(e) =>
               dispatch(setMemeToAdd({ ...memeToAdd, caption: e.target.value }))
@@ -104,6 +106,7 @@ export default function EditModal() {
             label="url"
             fullWidth
             value={memeToAdd.url}
+            placeholder="For Ex. https://source.unsplash.com/random"
             onChange={(e) =>
               dispatch(setMemeToAdd({ ...memeToAdd, url: e.target.value }))
             }
