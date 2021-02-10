@@ -14,12 +14,10 @@ export const memeSlice = createSlice({
       id: "",
     },
     memeToAdd: { name: "", caption: "", url: "" },
-    memeListCurrentPage: [],
   },
   reducers: {
     loadMemes: (state, action) => {
       state.memeList = action.payload;
-      state.memeListCurrentPage = action.payload;
     },
     addMeme: (state, action) => {
       state.memeList.push(action.payload);
@@ -115,7 +113,7 @@ export const PostMemeAsync = (data) => (dispatch) => {
     });
 };
 export const UpdateMemeAsync = (data) => (dispatch) => {
-  API.put(`/memes/${data.id}/`, data)
+  API.patch(`/memes/${data.id}/`, data)
     .then((res) => {
       console.log("meme data after update", res.data);
       dispatch(updateMeme(res.data));
