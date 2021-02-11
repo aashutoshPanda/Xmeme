@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 
 ]
 PAGINATION_SIZE = 5
@@ -127,7 +126,7 @@ STATIC_URL = '/static/'
 
 # django_heroku.settings(locals())
 
-
+# APPEND_SLASH = False
 ALLOWED_HOSTS = ['*']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
