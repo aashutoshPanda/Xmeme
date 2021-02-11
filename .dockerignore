@@ -37,3 +37,4 @@ db.sqlite3
 .gitignore
 .dockerignore
 README.md
+*pem
