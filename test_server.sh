@@ -12,11 +12,11 @@ chmod +x install.sh
 
 sudo ./install.sh
 
-
+echo "install complete"
 # 1. Run the user’s server execution steps which will bring up the server
 
 # 2. We’ll be running your server_run.sh as a background process (using &) so that we can run the next set of commands
-
+echo "start server run"
 chmod +x server_run.sh
 
 ./server_run.sh &
