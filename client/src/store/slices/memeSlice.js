@@ -78,7 +78,7 @@ export const PostMemeAsync = (data) => (dispatch) => {
     .then((res) => {
       console.log("meme data after post", res.data);
       dispatch(addMeme(res.data));
-      const message = "Successfully Posted !";
+      const message = "SUCCESSFULLY POST!";
       dispatch(setMessage(message));
       dispatch(setIsOpen(true));
       dispatch(setType("success"));
@@ -96,7 +96,7 @@ export const UpdateMemeAsync = (data) => (dispatch) => {
     .then((res) => {
       console.log("meme data after update", res.data);
       dispatch(updateMeme(res.data));
-      const message = "Successfully Updated!";
+      const message = "SUCCESSFULLY UPDATED!";
       dispatch(setMessage(message));
       dispatch(setType("success"));
       dispatch(setIsOpen(true));
@@ -113,6 +113,10 @@ export const DeleteMemeAsync = (id) => (dispatch) => {
   API.delete(`memes/${id}/`)
     .then((res) => {
       dispatch(deleteMeme(id));
+      const message = "SUCCESSFULLY DELETED!";
+      dispatch(setMessage(message));
+      dispatch(setType("danger"));
+      dispatch(setIsOpen(true));
       dispatch(setLoading(false));
     })
     .catch((err) => {
