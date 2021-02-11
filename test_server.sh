@@ -33,7 +33,7 @@
 
 # Should return an empty array.
 
-curl --location --request GET 'http://localhost:8081/memes'
+curl --location --request GET 'http://localhost:8081/memes/'
 
 
 # Execute the POST /memes endpoint using curl
@@ -49,7 +49,7 @@ curl --location --request POST 'http://localhost:8081/memes/' \
 
 # Execute the GET /memes endpoint using curl
 
-curl --location --request GET 'http://localhost:8081/memes'
+curl --location --request GET 'http://localhost:8081/memes/'
 
 
 # If you have swagger enabled, make sure it is exposed at localhost:8080

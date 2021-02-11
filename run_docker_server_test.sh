@@ -23,18 +23,12 @@ chmod +x sleep.sh
 
 # Execute the POST /memes endpoint using curl
 
-curl --location --request POST 'http://<Server_URL>/memes' \
-
+curl --location --request POST 'http://localhost:8081/memes/' \
 --header 'Content-Type: application/json' \
-
 --data-raw '{
-
-"name": "xyz",
-
-"url": "abc.com",
-
-"caption": "This is a meme"
-
+    "name": "xyz",
+    "url": "https://abc.com",
+    "caption": "This is a meme"
 }'
 
 
