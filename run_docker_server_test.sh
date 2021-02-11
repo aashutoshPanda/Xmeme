@@ -16,9 +16,9 @@ sudo docker run -d --net="host" xmeme_app
 
 # Run sleep.sh
 
-chmod +x sleep.sh
+#chmod +x sleep.sh
 
-./sleep.sh
+#./sleep.sh
 
 
 # Execute the POST /memes endpoint using curl

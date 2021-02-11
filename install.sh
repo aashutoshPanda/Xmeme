@@ -6,7 +6,8 @@ sudo apt-get update -y
 sudo apt install build-essential checkinstall -y
 sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev -y
 sudo apt-get install python3-pip -y
-python3 -m venv env
+sudo apt-get install python3-venv -y
+sudo python3 -m venv env
 sudo pip3 install -r requirements.txt
 sudo python3 manage.py makemigrations
 sudo python3 manage.py migrate
