@@ -41,6 +41,15 @@ class MemeViewSet(ModelViewSet):
         serializer = self.get_serializer(
             instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
+
+        if("name" in request.data.keys()):
+            name_in_db = instance.name
+            print(name_in_db, request.data["name"])
+            if(name_in_db != request.data["name"]):
+                return Response(
+                    {"detail": "Name Can't be updated again"},
+                    status.HTTP_403_FORBIDDEN
+                )
         self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
