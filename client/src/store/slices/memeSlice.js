@@ -115,7 +115,7 @@ export const DeleteMemeAsync = (id) => (dispatch) => {
       dispatch(deleteMeme(id));
       const message = "SUCCESSFULLY DELETED!";
       dispatch(setMessage(message));
-      dispatch(setType("info"));
+      dispatch(setType("success"));
       dispatch(setIsOpen(true));
       dispatch(setLoading(false));
     })
