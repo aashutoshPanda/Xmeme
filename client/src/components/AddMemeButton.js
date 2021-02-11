@@ -11,11 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setMemeToAdd,
-  selectMemeToAdd,
-  PostMemeAsync,
-} from "../store/slices/memeSlice";
+import { PostMemeAsync } from "../store/slices/memeSlice";
 import { setLoading } from "../store/slices/loadingSlice";
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -41,8 +37,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function EditModal() {
   const [open, setOpen] = React.useState(false);
+  const [memeToAdd, setMemeToAdd] = React.useState({
+    name: "",
+    caption: "",
+    url: "",
+  });
   const classes = useStyles();
-  const memeToAdd = useSelector(selectMemeToAdd);
+  // const memeToAdd = useSelector(selectMemeToAdd);
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {
@@ -84,7 +85,7 @@ export default function EditModal() {
             placeholder="Ex. Elon Musk"
             value={memeToAdd.name}
             onChange={(e) =>
-              dispatch(setMemeToAdd({ ...memeToAdd, name: e.target.value }))
+              setMemeToAdd({ ...memeToAdd, name: e.target.value })
             }
           />
           <TextField
@@ -96,7 +97,7 @@ export default function EditModal() {
             placeholder="Ex. Funniest Meme"
             value={memeToAdd.caption}
             onChange={(e) =>
-              dispatch(setMemeToAdd({ ...memeToAdd, caption: e.target.value }))
+              setMemeToAdd({ ...memeToAdd, caption: e.target.value })
             }
           />
           <TextField
@@ -108,7 +109,7 @@ export default function EditModal() {
             value={memeToAdd.url}
             placeholder="For Ex. https://source.unsplash.com/random"
             onChange={(e) =>
-              dispatch(setMemeToAdd({ ...memeToAdd, url: e.target.value }))
+              setMemeToAdd({ ...memeToAdd, url: e.target.value })
             }
           />
         </DialogContent>

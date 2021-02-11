@@ -10,8 +10,8 @@ import Slide from "@material-ui/core/Slide";
 import { useDispatch, useSelector } from "react-redux";
 import EditIcon from "@material-ui/icons/Edit";
 import {
-  setMemeToUpdate,
-  selectMemeToUpdate,
+  // setMemeToUpdate,
+  // selectMemeToUpdate,
   UpdateMemeAsync,
 } from "../store/slices/memeSlice";
 import { setLoading } from "../store/slices/loadingSlice";
@@ -21,11 +21,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function EditModal({ data }) {
   const [open, setOpen] = React.useState(false);
-  const memeToUpdate = useSelector(selectMemeToUpdate);
+  const [memeToUpdate, setMemeToUpdate] = React.useState({
+    name: "",
+    caption: "",
+  });
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {
-    dispatch(setMemeToUpdate(data));
+    setMemeToUpdate(data);
     setOpen(true);
   };
   const handleUpdate = () => {
@@ -68,9 +71,7 @@ export default function EditModal({ data }) {
             disabled={true}
             value={memeToUpdate.name}
             onChange={(e) =>
-              dispatch(
-                setMemeToUpdate({ ...memeToUpdate, name: e.target.value })
-              )
+              setMemeToUpdate({ ...memeToUpdate, name: e.target.value })
             }
           />
           <TextField
@@ -81,9 +82,7 @@ export default function EditModal({ data }) {
             fullWidth
             value={memeToUpdate.caption}
             onChange={(e) =>
-              dispatch(
-                setMemeToUpdate({ ...memeToUpdate, caption: e.target.value })
-              )
+              setMemeToUpdate({ ...memeToUpdate, caption: e.target.value })
             }
           />
           <TextField
@@ -94,9 +93,7 @@ export default function EditModal({ data }) {
             fullWidth
             value={memeToUpdate.url}
             onChange={(e) =>
-              dispatch(
-                setMemeToUpdate({ ...memeToUpdate, url: e.target.value })
-              )
+              setMemeToUpdate({ ...memeToUpdate, url: e.target.value })
             }
           />
         </DialogContent>

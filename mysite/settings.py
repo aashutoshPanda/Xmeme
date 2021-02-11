@@ -55,9 +55,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 
 ]
+PAGINATION_SIZE = 5
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'mysite.utils.CustomPagination',
-    'PAGE_SIZE': 100,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
     ),

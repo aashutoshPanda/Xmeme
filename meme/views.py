@@ -1,16 +1,21 @@
 from rest_framework.viewsets import ModelViewSet
-
+from django.conf import settings
 from .serializers import MemeSerializer
 from .models import Meme
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
+from .utils import CustomPagination
 
 
 class MemeViewSet(ModelViewSet):
     serializer_class = MemeSerializer
     queryset = Meme.objects.all()
+    pagination_class = CustomPagination
+    pagination_class.page_size = settings.PAGINATION_SIZE
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -51,3 +56,10 @@ class MemeViewSet(ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         kwargs['partial'] = True
         return self.update(request, *args, **kwargs)
+
+
+class PaginatedMemes(ListAPIView):
+    serializer_class = MemeSerializer
+    queryset = Meme.objects.all()
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = settings.PAGINATION_SIZE

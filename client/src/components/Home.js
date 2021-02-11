@@ -12,7 +12,7 @@ import Alert from "./Alert";
 import { getMemesAsync, selectSearchTerm } from "../store/slices/memeSlice";
 import { setLoading } from "../store/slices/loadingSlice";
 import { useSelector, useDispatch } from "react-redux";
-
+import Pagination from "./Pagination";
 import { selectMemeList } from "../store/slices/memeSlice";
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -39,7 +39,7 @@ export default function Home() {
     return searchTerm === "" || item.caption.toLowerCase().includes(searchTerm);
   });
   useEffect(() => {
-    dispatch(getMemesAsync());
+    dispatch(getMemesAsync(1));
     dispatch(setLoading(true));
   }, []);
 
@@ -63,6 +63,7 @@ export default function Home() {
               <h3 className={classes.nothingFound}>No memes to show :( </h3>
             )}
           </Grid>
+          <Pagination />
         </Container>
       </main>
       <Alert />

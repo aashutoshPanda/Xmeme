@@ -2,37 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setIsOpen, setType, setMessage } from "./alertSlice";
 import { setLoading } from "./loadingSlice";
 import API from "../../api";
-
+import { setTotalPages } from "./paginationSlice";
 export const memeSlice = createSlice({
   name: "meme",
   initialState: {
     memeList: [],
     searchTerm: "",
-    memeToUpdate: {
-      name: "",
-      caption: "",
-      url: "",
-      id: "",
-    },
-    memeToAdd: { name: "", caption: "", url: "" },
   },
   reducers: {
     loadMemes: (state, action) => {
       state.memeList = action.payload;
     },
     addMeme: (state, action) => {
-      state.memeList.push(action.payload);
-    },
-    setMemeToUpdate: (state, action) => {
-      state.memeToUpdate.name = action.payload.name;
-      state.memeToUpdate.caption = action.payload.caption;
-      state.memeToUpdate.url = action.payload.url;
-      state.memeToUpdate.id = action.payload.id;
-    },
-    setMemeToAdd: (state, action) => {
-      state.memeToAdd.name = action.payload.name;
-      state.memeToAdd.caption = action.payload.caption;
-      state.memeToAdd.url = action.payload.url;
+      state.memeList.unshift(action.payload);
     },
     updateMeme: (state, action) => {
       const meme = state.memeList.find((meme) => meme.id === action.payload.id);
@@ -56,10 +38,8 @@ export const memeSlice = createSlice({
 export const {
   loadMemes,
   addMeme,
-  setMemeToUpdate,
   updateMeme,
   deleteMeme,
-  setMemeToAdd,
   setSearchTerm,
 } = memeSlice.actions;
 
@@ -85,15 +65,16 @@ const hadleErrors = (err) => (dispatch) => {
   dispatch(setMessage(message));
   dispatch(setIsOpen(true));
 };
-export const getMemesAsync = () => (dispatch) => {
-  API.get(`/memes/`).then((res) => {
+export const getMemesAsync = (number) => (dispatch) => {
+  API.get(`paginated-memes/?page=${number}`).then((res) => {
     console.log("meme data", res.data);
-    dispatch(loadMemes(res.data));
+    dispatch(loadMemes(res.data.results));
+    dispatch(setTotalPages(res.data.count));
     dispatch(setLoading(false));
   });
 };
 export const PostMemeAsync = (data) => (dispatch) => {
-  API.post(`/memes/`, data)
+  API.post(`memes/`, data)
     .then((res) => {
       console.log("meme data after post", res.data);
       dispatch(addMeme(res.data));
@@ -111,7 +92,7 @@ export const PostMemeAsync = (data) => (dispatch) => {
     });
 };
 export const UpdateMemeAsync = (data) => (dispatch) => {
-  API.patch(`/memes/${data.id}/`, data)
+  API.patch(`memes/${data.id}/`, data)
     .then((res) => {
       console.log("meme data after update", res.data);
       dispatch(updateMeme(res.data));
@@ -129,7 +110,7 @@ export const UpdateMemeAsync = (data) => (dispatch) => {
     });
 };
 export const DeleteMemeAsync = (id) => (dispatch) => {
-  API.delete(`/memes/${id}/`)
+  API.delete(`memes/${id}/`)
     .then((res) => {
       dispatch(deleteMeme(id));
       dispatch(setLoading(false));
@@ -145,8 +126,6 @@ export const DeleteMemeAsync = (id) => (dispatch) => {
 // // the state. Selectors can also be defined inline where they're used instead of
 // // in the slice file. For example: `useSelector((state) => state.counter.value)`
 
-export const selectMemeToUpdate = (state) => state.meme.memeToUpdate;
-export const selectMemeToAdd = (state) => state.meme.memeToAdd;
 export const selectMemeList = (state) => state.meme.memeList;
 export const selectSearchTerm = (state) => state.meme.searchTerm;
 // export const selectShouldNavigate = (state) => state.meme.shouldNavigate;
