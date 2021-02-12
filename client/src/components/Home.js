@@ -51,6 +51,7 @@ export default function Home() {
       <AddMemeButton />
       <main>
         <Heading />
+        <Pagination />
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {filteredList.length !== 0 ? (
