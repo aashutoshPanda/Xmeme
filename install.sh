@@ -7,6 +7,7 @@ sudo apt install build-essential checkinstall -y
 sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev -y
 sudo apt-get install python3-pip -y
 sudo pip3 install -r requirements.txt
+chmod 777 db.sqlite3
 sudo python3 manage.py makemigrations
 sudo python3 manage.py migrate
 
