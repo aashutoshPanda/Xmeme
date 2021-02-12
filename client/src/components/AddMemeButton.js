@@ -37,11 +37,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function EditModal() {
   const [open, setOpen] = React.useState(false);
-  const [memeToAdd, setMemeToAdd] = React.useState({
+  const initState = {
     name: "",
     caption: "",
     url: "",
-  });
+  };
+  const [memeToAdd, setMemeToAdd] = React.useState(initState);
   const classes = useStyles();
   // const memeToAdd = useSelector(selectMemeToAdd);
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ export default function EditModal() {
     dispatch(PostMemeAsync(memeToAdd));
     dispatch(setLoading(true));
     setOpen(false);
+    setMemeToAdd(initState);
   };
   return (
     <div>

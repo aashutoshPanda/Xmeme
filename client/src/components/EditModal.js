@@ -21,10 +21,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function EditModal({ data }) {
   const [open, setOpen] = React.useState(false);
-  const [memeToUpdate, setMemeToUpdate] = React.useState({
-    name: "",
-    caption: "",
-  });
+  const initState = { name: "", caption: "" };
+  const [memeToUpdate, setMemeToUpdate] = React.useState(initState);
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {
@@ -35,6 +33,7 @@ export default function EditModal({ data }) {
     dispatch(UpdateMemeAsync(memeToUpdate));
     dispatch(setLoading(true));
     setOpen(false);
+    setMemeToUpdate(initState);
   };
   const handleClose = () => {
     setOpen(false);
