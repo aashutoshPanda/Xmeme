@@ -8,6 +8,7 @@ sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-de
 sudo apt-get install python3-pip -y
 sudo apt-get install python3-venv -y
 sudo python3 -m venv env
+sudo su
 source env/bin/activate
 sudo pip3 install -r requirements.txt
 sudo python3 manage.py makemigrations
