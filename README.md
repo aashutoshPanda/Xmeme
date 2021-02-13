@@ -1,8 +1,8 @@
 # Xmeme
 
-####Xmeme is a meme sharing platform.
+#### Xmeme is a meme sharing platform.
 
-##Live Demo
+## Live Demo
 
 Frontend : https://ashutoshpanda.netlify.app/
 Backend : https://django-rest-api-crio.herokuapp.com/swagger-ui/
