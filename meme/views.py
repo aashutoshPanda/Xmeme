@@ -14,13 +14,17 @@ from .utils import CustomPagination
 class MemeViewSet(ModelViewSet):
     serializer_class = MemeSerializer
     queryset = Meme.objects.all()
+    # to change default formating of response
     pagination_class = CustomPagination
     pagination_class.page_size = settings.PAGINATION_SIZE
 
     def create(self, request, *args, **kwargs):
+        """
+            to return HTTP STATUS CODE 409 instead of django's default 400 for duplicate post requests
+        """
         serializer = self.get_serializer(data=request.data)
         results = Meme.objects.filter(**request.data)
-        # to return HTTP STATUS CODE 409 instead of django's default 400 for duplicate post requests
+
         if results.count() > 0:
             return Response(
                 {"detail": "Duplicate POST requests with the same payload"},
@@ -32,6 +36,10 @@ class MemeViewSet(ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def update(self, request, *args, **kwargs):
+        """
+            Don't Allow PUT only PATCH should be there for updates
+            Name should not be allowed to be updated
+        """
         if(request.method == "PUT"):
             raise MethodNotAllowed(
                 method='PUT', detail='Method "PUT" not allowed')
@@ -68,6 +76,10 @@ class MemeViewSet(ModelViewSet):
 
 
 class PaginatedMemes(ListAPIView):
+    """
+        for retrieveing resutls in default DRF pagination format
+        to list in frontend
+    """
     serializer_class = MemeSerializer
     queryset = Meme.objects.all()
     pagination_class = PageNumberPagination

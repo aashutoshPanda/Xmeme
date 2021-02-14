@@ -9,5 +9,9 @@ class Meme(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
+        """
+            sort in - latest first order
+            we want unique memes (comb of caption,name,url)
+        """
         ordering = ['-created']
         unique_together = ('caption', 'url', 'name')
