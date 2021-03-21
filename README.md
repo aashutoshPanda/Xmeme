@@ -5,7 +5,7 @@
 ## Live Demo
 
 Frontend : https://ashutoshpanda.netlify.app/
-Backend : https://django-rest-api-crio.herokuapp.com/swagger-ui/
+Backend : https://xmeme-server-django.herokuapp.com/swagger-ui/
 
 <img src="https://i.ibb.co/qBVDQJk/Screenshot-from-2021-02-13-22-29-19.png" alt="Screenshot-from-2021-02-13-22-29-19" border="0">
 
